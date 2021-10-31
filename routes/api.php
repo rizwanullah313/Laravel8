@@ -37,8 +37,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/users/{name?}', function($name = null){
     return 'Hi '. $name;
-})->where('name', '[a-zA-Z]+');
+});
 
 Route::get('/products/{id?}', function($id = null){
     return 'Product Id is '. $id;
-})->where('id', '[0-9]+');
+});
+
+Route::match(['get','post'], '/students', function(Request $req)
+{
+    return 'Requested methd is ' . $req->method();
+});
+
+Route::any('/posts', function(Request $req){
+    return 'Requested methd is '.$req->method();
+});
